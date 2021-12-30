@@ -1,0 +1,33 @@
+---
+- name: Prep learner machines
+  hosts: all
+  remote_user: centos
+  become: true
+  tasks:
+  - name: Enable password-based authentication
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^PasswordAuthentication.*no'
+      line: PasswordAuthentication=yes
+  - name: Restart sshd
+    service:
+      name: sshd
+      state: restarted
+  - name: Set centos user password
+    user:
+      name: centos
+      password: "{{ newpassword|password_hash('sha512') }}"
+  - name: Install httpd
+    yum:
+      name: httpd
+      state: present
+  - name: Create /var/www/website
+    file:
+      path: /var/www/website
+      state: directory
+      mode: 0755
+      owner: httpd
+      group: httpd
+  - name: Create CEO user
+    user:
+      name: ceo

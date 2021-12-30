@@ -1,0 +1,3 @@
+%{ for address, password in users ~}
+${address} user_password=${password}
+%{ endfor ~}

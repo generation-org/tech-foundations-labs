@@ -1,0 +1,96 @@
+---
+- name: Prep learner machines
+  hosts: all
+  remote_user: centos
+  become: true
+  tasks:
+  - name: Enable password-based authentication
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^PasswordAuthentication.*no'
+      line: PasswordAuthentication=yes
+  - name: Restart sshd
+    service:
+      name: sshd
+      state: restarted
+  - name: Set centos user password
+    user:
+      name: centos
+      password: "{{ newpassword|password_hash('sha512') }}"
+  - name: Install httpd
+    yum:
+      name: httpd
+      state: present
+  - name: Start httpd
+    service:
+      name: httpd
+      state: started
+  - name: Create directories
+    file:
+      path: "{{ item }}"
+      state: directory
+      mode: 0755
+      owner: httpd
+      group: httpd
+    with_items:
+      - /var/www/website
+      - /var/www/website/about
+      - /var/www/website/about/our-ceo
+      - /var/www/website/terms-and-conditions
+  - name: Deploy html files
+    copy:
+      content: "{{ item.content }}"
+      dest: "{{ item.dest }}"
+      owner: httpd
+      group: httpd
+      mode: 0755
+    with_items:
+      - content: |
+          <html>
+            <head>
+              <title>Our Website</title>
+            </head>
+            <body>
+              <h1>Welcome to our website!</h1>
+              <ul>
+                <li><a href="/about">Our about page</a></li>
+                <li><a href="/terms-and-conditions">Terms and conditions</a></li>
+              <ul>
+            </body>
+          </html>
+        dest: /var/www/website/index.html
+      - content: |
+          <html>
+            <head>
+              <title>About us</title>
+            </head>
+            <body>
+              <h1>About us</h1>
+              <p>We must write something here before the website goes live..</p>
+              <br>
+              <a href="/about/our-ceo">Our CEO</a>
+            </body>
+          </html>
+        dest: /var/www/website/about/index.html
+      - content: |
+          <html>
+            <head>
+              <title>Our CEO</title>
+            </head>
+            <body>
+              <h1>Our CEO</h1>
+              <p>So basically, our CEO is awesome. Look at this website he commissioned!</p>
+            </body>
+          <html>
+        dest: /var/www/website/about/our-ceo/index.html
+      - content: |
+          <html>
+            <head>
+              <title>Terms and Conditions</title>
+            </head>
+            <body>
+              <h1>Terms and Conditions</h1>
+              <p>Please be nice to us.. we're new here.</p>
+            </body>
+          <html>
+        dest: /var/www/website/terms-and-conditions/index.html
