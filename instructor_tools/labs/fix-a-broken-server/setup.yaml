@@ -4,15 +4,20 @@
   remote_user: centos
   become: true
   tasks:
+  - name: Disable SELinux
+    selinux:
+      policy: targeted
+      state: permissive
   - name: Enable password-based authentication
     lineinfile:
       path: /etc/ssh/sshd_config
       regexp: '^PasswordAuthentication.*no'
       line: PasswordAuthentication=yes
-  - name: Restart sshd
-    service:
-      name: sshd
-      state: restarted
+  - name: Change to port 2000
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^Port 22'
+      line: Port 2000
   - name: Set centos user password
     user:
       name: centos
@@ -21,10 +26,11 @@
     yum:
       name: httpd
       state: present
-  - name: Start httpd
-    service:
-      name: httpd
-      state: started
+  - name: Break httpd
+    lineinfile:
+      path: /etc/httpd/conf/httpd.conf
+      regexp: '^Listen 80'
+      line: "Listen 8000 \n# Fire me huh. See how you handle this"
   - name: Create directories
     file:
       path: "{{ item }}"
@@ -34,9 +40,10 @@
       group: apache
     with_items:
       - /var/www/website
-      - /var/www/website/about
-      - /var/www/website/about/our-ceo
-      - /var/www/website/terms-and-conditions
+      - /var/www/website.old
+      - /var/www/website.old/about
+      - /var/www/website.old/about/our-ceo
+      - /var/www/website.old/terms-and-conditions
   - name: Deploy html files
     copy:
       content: "{{ item.content }}"
@@ -58,7 +65,7 @@
               <ul>
             </body>
           </html>
-        dest: /var/www/website/index.html
+        dest: /var/www/website.old/index.html
       - content: |
           <html>
             <head>
@@ -71,7 +78,7 @@
               <a href="/about/our-ceo">Our CEO</a>
             </body>
           </html>
-        dest: /var/www/website/about/index.html
+        dest: /var/www/website.old/about/index.html
       - content: |
           <html>
             <head>
@@ -82,7 +89,7 @@
               <p>So basically, our CEO is awesome. Look at this website he commissioned!</p>
             </body>
           <html>
-        dest: /var/www/website/about/our-ceo/index.html
+        dest: /var/www/website.old/about/our-ceo/index.html
       - content: |
           <html>
             <head>
@@ -93,4 +100,23 @@
               <p>Please be nice to us.. we're new here.</p>
             </body>
           <html>
-        dest: /var/www/website/terms-and-conditions/index.html
+        dest: /var/www/website.old/terms-and-conditions/index.html
+      - content: |
+          <html>
+            <head>
+              <title>These guys SUCK</title>
+            </head>
+            <body>
+              <h1>Fired!</h1>
+              <p>Fired just for turning up to work drunk. Rude!</p>
+            </body>
+          <html>
+        dest: /var/www/website/index.html
+  - name: Restart httpd
+    service:
+      name: httpd
+      state: restarted
+  - name: Restart sshd
+    service:
+      name: sshd
+      state: restarted

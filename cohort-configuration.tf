@@ -4,8 +4,8 @@ locals {
   cohorts = {
     BIR99 : {
       instructor_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDrrMuNdW6GceUKj6ke2IrugDaJrgEUGhdDAVLE9lC/+E/9nSqbGLsx/zZos2wHU2WTqPpihoq+1FOSrH9Iae+ep03C3PV6HvSudhFnBT8cQCxFkzJfzrGkTExQO27wToBX5FvnXJaGyj/IfHkEgILerLuLU/z0cVliuL5JacxIr8NMB5eA57GkX40GHkPWooaPs4UyIbVbpmwnjQhrF4ymPTyaa+imqn22MofD/8U5a2NBvPMFrzl6kGmabG9TO5xW8w+C/VvnOEG+wxYa6qpF4bWVWiqK/Hvuqe8IuqU1wjosUWbqEd2P6Q7hp79ry+FLZRgkLVa/q6974w7aUPRvmxyNxZFI9hjPhBa6xNnPsKeaF/LCjvwsfAhEKs/T7pR+VYy60F0QDDXekGMkhtnd+hQs1XTXznhSQg4W/fPmtvAEv9IwO2OW19TUarGoBsHtWwNKY8MzrvGIH2rO5UqT4/uY7d9IeN8b72HW/EFdR3xDUBafFrvMQCs3gDf9m3c= jamesbelchamber@pyrelaptop"
-      learner_count         = 5
-      single-vm-lab         = false
+      learner_count         = 2
+      single-vm-lab         = true
     }
   }
 }
@@ -39,6 +39,7 @@ wget https://github.com/generation-org/tech-foundations-labs/archive/refs/heads/
 unzip main.zip
 cp -ar tech-foundations-labs-main/instructor_tools /home/centos/
 chown -R centos:centos /home/centos/instructor_tools
+mv /home/centos/instructor_tools/.ansible.cfg /home/centos/
 EOF
 
   tags = {

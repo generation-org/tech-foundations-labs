@@ -26,8 +26,8 @@
       path: /var/www/website
       state: directory
       mode: 0755
-      owner: httpd
-      group: httpd
+      owner: apache
+      group: apache
   - name: Create CEO user
     user:
       name: ceo
