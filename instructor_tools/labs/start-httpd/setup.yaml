@@ -16,7 +16,7 @@
   - name: Set centos user password
     user:
       name: centos
-      password: "{{ user_password|password_hash('sha512') }}"
+      password: "{{ newpassword|password_hash('sha512') }}"
   - name: Install httpd
     yum:
       name: httpd

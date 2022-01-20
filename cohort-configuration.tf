@@ -9,9 +9,9 @@ locals {
       cheeper-api           = false
     },
     us-cyb-nat1 : {
-      instructor_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDGKkaL0U82Dj0DGS+jAMcFTiOvueC40C5zkOKOPxMSYrm9o4RLP8upKXwqyllW30xxIS6hfIBT7tyG6fBstoiptBg6/9pptbS0G4IdNaTEjmqcJi0f3Z8tlvM6676LG/+VDeTnPoGICc9PNKT9ZEujs/GItTvdrHU8QiZY4qAFdA8ZwzdxOQM/HHRjTFzgtnUTWejVSm7t15rLIhsxAzapZTKht15PYQPpiV2LPyzQPSsAwAK4oNLjwJdHuwlAz0Vxu2J15ywg8VoipdU2aY3s/QNGnoBRCS4Q9oICmMjB8SEvuHtNQ8feX8utAvQuZyOs6hslx6hXB6JDuYUzFdmQnS47hxeQDTa6ymilb7/4QdOnD5nbvA7SHUo2czvbrljGy10NjhpZq0zlbTsPwj5r4iW3Iq9Du073zfZeTUvSV4hKdLcyF4GAN/Co35i0vYa7pFCus7xBbOyJKA686A5IY78GJ6nJZCX0EcTCmn+NVO4EGgMLa2eZfLQEUFCvNsU= giovannipro@MBP-3.home"
-      learner_count         = 117
-      single-vm-lab         = false
+      instructor_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDqv+ZjIhkV+ovMOFTAsiSpSameRVDfiJaH4k9gHYXUQIBIrI/TDybemn0nVuS3uEZkTbgqbE6g7WN6noWpoNsKhoU/cokCWCbDc7PbKCB0jqo6ykuEW7ymsz8jNatCq6YJ6BCMqfDlvhKWB32+q3xUMkI4Xd+iA8+/lva/scEOrGgAhln34MdZbVC4Y/D/Q9yOR7pBitwO9Yp/mEelQ0B1ko2HfgI9eiUtr3Yae1D9/yrSclB9P1SF85tYE3dIDhEe3kj/xGvlf3wddcr5ueZncpcAL5wsepwT7ukM9FA3yVtfklwVG9wp98IO0pxLglIMuWA6SXZcE2Anc+uu6tCtaSmPdhJXG4vK0oJrN0aIKLvl2MFZEFmMI8Qyhue43lfeSPYcSD9Vq8qWTlRhcYXqAoglVJgSnG0Np5Hx6QOFp5G1qUFoXefNq7JpA+a631TJF92RlxguqUtxWQlHLGTbBpy6lL3rumNF3Qx6M9D/HnAUptpdIlESyQHndqpN/5s= centos@ip-172-16-0-244.ec2.internal"
+      learner_count         = 5 # Actually 117
+      single-vm-lab         = true
       cheeper-api           = true
     },
   }
