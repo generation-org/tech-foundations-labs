@@ -1,0 +1,1 @@
+variable "cohort_name" {}

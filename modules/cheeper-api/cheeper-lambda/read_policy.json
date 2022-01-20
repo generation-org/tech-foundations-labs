@@ -1,0 +1,17 @@
+{
+    "Version": "2012-10-17",
+    "Statement": [
+      {
+        "Sid": "Stmt1604732925387",
+        "Action": [
+          "dynamodb:BatchGetItem",
+          "dynamodb:GetItem",
+          "dynamodb:Query",
+          "dynamodb:Scan"
+        ],
+        "Effect": "Allow",
+        "Resource": "arn:aws:dynamodb:us-east-1:*:table/*"
+      }
+    ]
+  }
+  
