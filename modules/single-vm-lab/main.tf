@@ -1,11 +1,11 @@
 resource "aws_instance" "LearnerVM" {
-  count                       = var.learner_count
-  ami                         = var.ami_id
-  instance_type               = "t3a.micro"
-  subnet_id                   = var.subnet_id
-  vpc_security_group_ids      = [var.security_group_id]
-  associate_public_ip_address = true
-  key_name                    = var.instructor_public_key
+  count                                = var.learner_count
+  ami                                  = var.ami_id
+  instance_type                        = "t3a.micro"
+  subnet_id                            = var.subnet_id
+  vpc_security_group_ids               = [var.security_group_id]
+  associate_public_ip_address          = true
+  key_name                             = var.instructor_public_key
   instance_initiated_shutdown_behavior = "terminate"
 
   tags = {

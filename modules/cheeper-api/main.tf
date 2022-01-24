@@ -1,9 +1,7 @@
 resource "aws_dynamodb_table" "ddbtable" {
-  name             = "cheeper-${var.cohort_name}"
-  hash_key         = "message"
-  billing_mode   = "PROVISIONED"
-  read_capacity  = 5
-  write_capacity = 5
+  name         = "cheeper-${var.cohort_name}"
+  hash_key     = "message"
+  billing_mode = "PAY_PER_REQUEST"
   attribute {
     name = "message"
     type = "S"
@@ -77,7 +75,7 @@ resource "aws_lambda_function" "readLambda" {
 
 
 resource "aws_api_gateway_rest_api" "apiLambda" {
-  name        = "cheeper-${var.cohort_name}-API"
+  name = "cheeper-${var.cohort_name}-API"
 
 }
 
@@ -91,10 +89,10 @@ resource "aws_api_gateway_resource" "writeResource" {
 
 
 resource "aws_api_gateway_method" "writeMethod" {
-   rest_api_id   = aws_api_gateway_rest_api.apiLambda.id
-   resource_id   = aws_api_gateway_resource.writeResource.id
-   http_method   = "POST"
-   authorization = "NONE"
+  rest_api_id   = aws_api_gateway_rest_api.apiLambda.id
+  resource_id   = aws_api_gateway_resource.writeResource.id
+  http_method   = "POST"
+  authorization = "NONE"
 }
 
 
@@ -107,66 +105,66 @@ resource "aws_api_gateway_resource" "readResource" {
 
 
 resource "aws_api_gateway_method" "readMethod" {
-   rest_api_id   = aws_api_gateway_rest_api.apiLambda.id
-   resource_id   = aws_api_gateway_resource.readResource.id
-   http_method   = "POST"
-   authorization = "NONE"
+  rest_api_id   = aws_api_gateway_rest_api.apiLambda.id
+  resource_id   = aws_api_gateway_resource.readResource.id
+  http_method   = "POST"
+  authorization = "NONE"
 }
 
 
 
 
 resource "aws_api_gateway_integration" "writeInt" {
-   rest_api_id = aws_api_gateway_rest_api.apiLambda.id
-   resource_id = aws_api_gateway_resource.writeResource.id
-   http_method = aws_api_gateway_method.writeMethod.http_method
+  rest_api_id = aws_api_gateway_rest_api.apiLambda.id
+  resource_id = aws_api_gateway_resource.writeResource.id
+  http_method = aws_api_gateway_method.writeMethod.http_method
 
-   integration_http_method = "POST"
-   type                    = "AWS_PROXY"
-   uri                     = aws_lambda_function.writeLambda.invoke_arn
-   
+  integration_http_method = "POST"
+  type                    = "AWS_PROXY"
+  uri                     = aws_lambda_function.writeLambda.invoke_arn
+
 }
 
 
 resource "aws_api_gateway_integration" "readInt" {
-   rest_api_id = aws_api_gateway_rest_api.apiLambda.id
-   resource_id = aws_api_gateway_resource.readResource.id
-   http_method = aws_api_gateway_method.readMethod.http_method
+  rest_api_id = aws_api_gateway_rest_api.apiLambda.id
+  resource_id = aws_api_gateway_resource.readResource.id
+  http_method = aws_api_gateway_method.readMethod.http_method
 
-   integration_http_method = "POST"
-   type                    = "AWS_PROXY"
-   uri                     = aws_lambda_function.readLambda.invoke_arn
+  integration_http_method = "POST"
+  type                    = "AWS_PROXY"
+  uri                     = aws_lambda_function.readLambda.invoke_arn
 
 }
 
 
 
 resource "aws_api_gateway_deployment" "apideploy" {
-   depends_on = [ aws_api_gateway_integration.writeInt, aws_api_gateway_integration.readInt]
+  depends_on = [aws_api_gateway_integration.writeInt, aws_api_gateway_integration.readInt]
 
-   rest_api_id = aws_api_gateway_rest_api.apiLambda.id
-   stage_name  = "Prod"
+  rest_api_id = aws_api_gateway_rest_api.apiLambda.id
+  stage_name  = "Prod"
 }
 
 
 resource "aws_lambda_permission" "writePermission" {
-   statement_id  = "AllowExecutionFromAPIGateway"
-   action        = "lambda:InvokeFunction"
-   function_name = aws_lambda_function.writeLambda.function_name
-   principal     = "apigateway.amazonaws.com"
+  statement_id  = "AllowExecutionFromAPIGateway"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.writeLambda.function_name
+  principal     = "apigateway.amazonaws.com"
 
-   source_arn = "${aws_api_gateway_rest_api.apiLambda.execution_arn}/Prod/POST/send_cheep"
+  source_arn = "${aws_api_gateway_rest_api.apiLambda.execution_arn}/Prod/POST/send_cheep"
 
 }
 
 
 resource "aws_lambda_permission" "readPermission" {
-   statement_id  = "AllowExecutionFromAPIGateway"
-   action        = "lambda:InvokeFunction"
-   function_name = aws_lambda_function.readLambda.function_name
-   principal     = "apigateway.amazonaws.com"
+  statement_id  = "AllowExecutionFromAPIGateway"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.readLambda.function_name
+  principal     = "apigateway.amazonaws.com"
 
-   source_arn = "${aws_api_gateway_rest_api.apiLambda.execution_arn}/Prod/POST/get_cheeps"
+  source_arn = "${aws_api_gateway_rest_api.apiLambda.execution_arn}/Prod/POST/get_cheeps"
 
 }
 
