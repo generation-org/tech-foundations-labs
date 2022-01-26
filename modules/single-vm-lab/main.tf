@@ -13,6 +13,9 @@ resource "aws_instance" "LearnerVM" {
     Cohort = var.cohort_name
     Name   = "${var.cohort_name} Learner VM ${count.index}"
   }
+  lifecycle {
+    ignore_changes = [ami]
+  }
 }
 
 resource "random_password" "learner_passwords" {

@@ -1,7 +1,7 @@
 import requests
 
 def test_documentroot(host):
-    httpdconf = host.file("/etc/httpd/httpd.conf")
+    httpdconf = host.file("/etc/httpd/conf/httpd.conf")
     assert httpdconf.contains("/var/www/website")
     assert httpdconf.contains("Listen 80")
 

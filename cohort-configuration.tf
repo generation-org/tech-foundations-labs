@@ -3,15 +3,15 @@
 locals {
   cohorts = {
     BIR99 : {
-      instructor_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDrrMuNdW6GceUKj6ke2IrugDaJrgEUGhdDAVLE9lC/+E/9nSqbGLsx/zZos2wHU2WTqPpihoq+1FOSrH9Iae+ep03C3PV6HvSudhFnBT8cQCxFkzJfzrGkTExQO27wToBX5FvnXJaGyj/IfHkEgILerLuLU/z0cVliuL5JacxIr8NMB5eA57GkX40GHkPWooaPs4UyIbVbpmwnjQhrF4ymPTyaa+imqn22MofD/8U5a2NBvPMFrzl6kGmabG9TO5xW8w+C/VvnOEG+wxYa6qpF4bWVWiqK/Hvuqe8IuqU1wjosUWbqEd2P6Q7hp79ry+FLZRgkLVa/q6974w7aUPRvmxyNxZFI9hjPhBa6xNnPsKeaF/LCjvwsfAhEKs/T7pR+VYy60F0QDDXekGMkhtnd+hQs1XTXznhSQg4W/fPmtvAEv9IwO2OW19TUarGoBsHtWwNKY8MzrvGIH2rO5UqT4/uY7d9IeN8b72HW/EFdR3xDUBafFrvMQCs3gDf9m3c= jamesbelchamber@pyrelaptop"
+      instructor_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDua0etou9YbuRgXacCzoYpihp8ibPORYOVToBHMgPUGnGv09hNI4U5J7G5mYtg2k4piqsTwoWhCMCZSN+pxfe/MJywLRbgBPK1QUXynougmFlKFBJpRfwX0d0eKVTzUK2fltrIh89tor7bfaM2wFXim+k8HArJVRlp2aase8swb4t5rzwC5nmYt+KS1IaiU6zT8rJwGIooFKQnovw7WFaGIEkMHOetxhP+b8YwyNh+LVqvXvDuEWgIb+hnUskBWOlxwwh6fqRlI7+Ghaly9xo1HCjFqq1j9CnBBi29NBBm9hQti1+FHIBqy2wJCh/KoHgDjvbcfM0/wE+ebsXISmVuh2sJqc+LRg1XwbVYbrFH+mBk6RMaIJiphRS6nTtYY8lM1dbR3yQArgfe3D4VvgkAGbqxaHYR2rbXH7C7lk7Han3q7iSXiGKxhAIvnr5j8klpq3iVhRH4wwya1QaPBjXMIK/4NfeouVuG0T6p2mYcnZ3RBoQwxtFXW2Lyi2GeHJRznT9axqQL0eUbSA6YEe6oBO1uhLqt+orFTNkcz4aGqyybEXw9ncV/AZs630Cl/UfHjOuCOmxFx84wqNk8yIbwE4fC6aDJzSMxur70leOHnFnGgjLfnZXZBnc0G4ZD1K6aOVE2nQ+08emcuiN+Cblt98edEuiUVobTIZ/TC7iO+w=="
       learner_count         = 2
       single-vm-lab         = false
       cheeper-api           = false
     },
     us-cyb-nat1 : {
-      instructor_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDqv+ZjIhkV+ovMOFTAsiSpSameRVDfiJaH4k9gHYXUQIBIrI/TDybemn0nVuS3uEZkTbgqbE6g7WN6noWpoNsKhoU/cokCWCbDc7PbKCB0jqo6ykuEW7ymsz8jNatCq6YJ6BCMqfDlvhKWB32+q3xUMkI4Xd+iA8+/lva/scEOrGgAhln34MdZbVC4Y/D/Q9yOR7pBitwO9Yp/mEelQ0B1ko2HfgI9eiUtr3Yae1D9/yrSclB9P1SF85tYE3dIDhEe3kj/xGvlf3wddcr5ueZncpcAL5wsepwT7ukM9FA3yVtfklwVG9wp98IO0pxLglIMuWA6SXZcE2Anc+uu6tCtaSmPdhJXG4vK0oJrN0aIKLvl2MFZEFmMI8Qyhue43lfeSPYcSD9Vq8qWTlRhcYXqAoglVJgSnG0Np5Hx6QOFp5G1qUFoXefNq7JpA+a631TJF92RlxguqUtxWQlHLGTbBpy6lL3rumNF3Qx6M9D/HnAUptpdIlESyQHndqpN/5s= centos@ip-172-16-0-244.ec2.internal"
+      instructor_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCrYYCNe9zt55AaUUDdastdW6n2KHFQRtvG+R9NL/QFRP6qnMSkYRJh0llMcwxk5NGt4uvh4i5QPiLk34YR+x0Rb3nJjQB/1wwXsuXP/u7+g9A80/xfdzi7fJ7dxNKBV1AfmoxFGLEt8gj600Ar3szVNnaMl+r5euaZ4CGAXm1eFzErN1FQj5n0VinFPwYpt77Z/1HU15IblojKrWWsgkjzZuWfiXeKBlt9RvDdvmLft6UtR70VLCHCnglso2ouFs+99o4u+VVSY7zj2hlOiP6VA3cX8VgXt/x5kG+9W0E14hOGWvrsAgzVU5w8RL4ZUFUbFO186JqR601P5auM6BF1Y/iTndsLakMRatcWjm0uYLQLO4yFzQjW3BtqO/Gn+/hczZLDLJwMeG1VnxdDsJ4XN4goAIqjc96D9m4L1Tx7wSnQyDrfQPmTwmlqz16LQSAPAR4w8BEtCjV9XoyGE8YPtaTg5Z9Bxg+6sPRz+LRtIT9v8xTKUGJlpNQPNMd4pnk= centos@ip-172-16-0-205.ec2.internal"
       learner_count         = 114
-      single-vm-lab         = false
+      single-vm-lab         = true
       cheeper-api           = true
     },
   }
@@ -57,6 +57,9 @@ EOF
     Course = "Tech Foundations"
     Cohort = each.value.tags_all.Cohort
     Name   = "${each.value.tags_all.Cohort} Instructor VM"
+  }
+  lifecycle {
+    ignore_changes = [ami]
   }
 }
 
