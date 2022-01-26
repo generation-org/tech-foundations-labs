@@ -10,7 +10,7 @@ locals {
     },
     us-cyb-nat1 : {
       instructor_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQDqv+ZjIhkV+ovMOFTAsiSpSameRVDfiJaH4k9gHYXUQIBIrI/TDybemn0nVuS3uEZkTbgqbE6g7WN6noWpoNsKhoU/cokCWCbDc7PbKCB0jqo6ykuEW7ymsz8jNatCq6YJ6BCMqfDlvhKWB32+q3xUMkI4Xd+iA8+/lva/scEOrGgAhln34MdZbVC4Y/D/Q9yOR7pBitwO9Yp/mEelQ0B1ko2HfgI9eiUtr3Yae1D9/yrSclB9P1SF85tYE3dIDhEe3kj/xGvlf3wddcr5ueZncpcAL5wsepwT7ukM9FA3yVtfklwVG9wp98IO0pxLglIMuWA6SXZcE2Anc+uu6tCtaSmPdhJXG4vK0oJrN0aIKLvl2MFZEFmMI8Qyhue43lfeSPYcSD9Vq8qWTlRhcYXqAoglVJgSnG0Np5Hx6QOFp5G1qUFoXefNq7JpA+a631TJF92RlxguqUtxWQlHLGTbBpy6lL3rumNF3Qx6M9D/HnAUptpdIlESyQHndqpN/5s= centos@ip-172-16-0-244.ec2.internal"
-      learner_count         = 117
+      learner_count         = 114
       single-vm-lab         = false
       cheeper-api           = true
     },
@@ -47,6 +47,10 @@ unzip main.zip
 cp -ar tech-foundations-labs-main/instructor_tools /home/centos/
 chown -R centos:centos /home/centos/instructor_tools
 mv /home/centos/instructor_tools/.ansible.cfg /home/centos/
+mkdir -p /home/centos/.ssh
+echo -e "Host *\n    StrictHostKeyChecking no" > /home/centos/.ssh/config
+chown -R centos:centos /home/centos/.ssh
+chmod 0600 /home/centos/.ssh/config
 EOF
 
   tags = {
