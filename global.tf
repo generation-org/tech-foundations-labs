@@ -1,6 +1,7 @@
 # Global configuration
 provider "aws" {
   region = "us-east-1"
+  profile = "generation"
 }
 
 resource "aws_vpc" "main" {

@@ -11,7 +11,7 @@ locals {
     us-cyb-nat1 : {
       instructor_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCrYYCNe9zt55AaUUDdastdW6n2KHFQRtvG+R9NL/QFRP6qnMSkYRJh0llMcwxk5NGt4uvh4i5QPiLk34YR+x0Rb3nJjQB/1wwXsuXP/u7+g9A80/xfdzi7fJ7dxNKBV1AfmoxFGLEt8gj600Ar3szVNnaMl+r5euaZ4CGAXm1eFzErN1FQj5n0VinFPwYpt77Z/1HU15IblojKrWWsgkjzZuWfiXeKBlt9RvDdvmLft6UtR70VLCHCnglso2ouFs+99o4u+VVSY7zj2hlOiP6VA3cX8VgXt/x5kG+9W0E14hOGWvrsAgzVU5w8RL4ZUFUbFO186JqR601P5auM6BF1Y/iTndsLakMRatcWjm0uYLQLO4yFzQjW3BtqO/Gn+/hczZLDLJwMeG1VnxdDsJ4XN4goAIqjc96D9m4L1Tx7wSnQyDrfQPmTwmlqz16LQSAPAR4w8BEtCjV9XoyGE8YPtaTg5Z9Bxg+6sPRz+LRtIT9v8xTKUGJlpNQPNMd4pnk= centos@ip-172-16-0-205.ec2.internal"
       learner_count         = 114
-      single-vm-lab         = true
+      single-vm-lab         = false
       cheeper-api           = true
     },
   }
@@ -60,6 +60,9 @@ EOF
   }
   lifecycle {
     ignore_changes = [ami]
+  }
+  credit_specification {
+    cpu_credits = "standard"
   }
 }
 

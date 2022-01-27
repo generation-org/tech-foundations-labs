@@ -16,6 +16,9 @@ resource "aws_instance" "LearnerVM" {
   lifecycle {
     ignore_changes = [ami]
   }
+  credit_specification {
+    cpu_credits = "standard"
+  }
 }
 
 resource "random_password" "learner_passwords" {
