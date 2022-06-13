@@ -1,4 +1,4 @@
-# Deploy WordPress
+# Dedicated filesystem
 
 In this lab you're going to create a dedicated filesystem for the WordPress files.
 
