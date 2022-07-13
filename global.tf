@@ -1,8 +1,20 @@
 # Global configuration
 provider "aws" {
-  region = "us-east-1"
+  region  = "us-east-1"
   profile = "Generation"
 }
+
+terraform {
+  backend "s3" {
+    bucket         = "tech-foundations-labs-tfstate"
+    key            = "state"
+    dynamodb_table = "tech-foundations-labs-tfstate"
+    region = "us-east-1"
+    encrypt        = true
+    profile = "Generation"
+  }
+}
+
 
 resource "aws_vpc" "main" {
   cidr_block           = "172.16.0.0/16"
