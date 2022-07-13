@@ -1,0 +1,79 @@
+---
+- name: Prep learner machines
+  hosts: all
+  remote_user: centos
+  become: true
+  tasks:
+  - name: Disable SELinux
+    selinux:
+      state: disabled
+  - name: Enable password-based authentication
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^PasswordAuthentication.*no'
+      line: PasswordAuthentication=yes
+  - name: Restart sshd
+    service:
+      name: sshd
+      state: restarted
+  - name: Set centos user password
+    user:
+      name: centos
+      password: "{{ newpassword|password_hash('sha512') }}"
+  - name: Install MySQL, PyMySQL and pip
+    package:
+      name: "{{ item }}"
+    loop: [ 'mysql-server', 'python3-PyMySQL' , 'python3-pip']
+  - name: Start MySQL
+    service:
+      name: mysqld
+      state: started
+      enabled: yes
+  - name: Set MySQL Root Password
+    mysql_user:
+      name: root
+      password: "{{ newpassword }}"
+  - name: Remove MySQL anonymous accounts
+    mysql_user:
+      name: ''
+      host_all: yes
+      state: absent
+      login_user: root
+      login_password: "{{ newpassword }}"
+  - name: Remove MySQL test database
+    mysql_db:
+      name: test
+      state: absent
+      login_user: root
+      login_password: "{{ newpassword }}"
+  - name: Create WordPress Database
+    mysql_db:
+      name: wordpress
+      state: present
+      login_user: root
+      login_password: "{{ newpassword }}"
+  - name: Create WordPress User
+    mysql_user:
+      name: wordpress
+      password: "{{ newpassword }}"
+      priv: "wordpress.*:ALL"
+      state: present
+      login_user: root
+      login_password: "{{ newpassword }}"
+  - name: Install boto
+    pip:
+      name: "{{ item }}"
+    loop: [ 'boto3', 'boto', 'botocore' ]
+  - name: adding new volume
+    ec2_vol:
+      aws_access_key: "{{ aws_access_key }}"
+      aws_secret_key: "{{ aws_secret_key }}"
+      instance: i-04cb3dfa2114a1e6f
+      volume_size: 5
+      region: us-east-1
+      device_name: /dev/sdb
+      volume_type: gp2
+    register: ec2_vol 
+  - name: Wait for server to restart
+    reboot:
+      reboot_timeout: 3600
