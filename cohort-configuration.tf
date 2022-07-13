@@ -3,7 +3,7 @@
 locals {
   cohorts = {
     BIR99 : {
-      instructor_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAACAQDua0etou9YbuRgXacCzoYpihp8ibPORYOVToBHMgPUGnGv09hNI4U5J7G5mYtg2k4piqsTwoWhCMCZSN+pxfe/MJywLRbgBPK1QUXynougmFlKFBJpRfwX0d0eKVTzUK2fltrIh89tor7bfaM2wFXim+k8HArJVRlp2aase8swb4t5rzwC5nmYt+KS1IaiU6zT8rJwGIooFKQnovw7WFaGIEkMHOetxhP+b8YwyNh+LVqvXvDuEWgIb+hnUskBWOlxwwh6fqRlI7+Ghaly9xo1HCjFqq1j9CnBBi29NBBm9hQti1+FHIBqy2wJCh/KoHgDjvbcfM0/wE+ebsXISmVuh2sJqc+LRg1XwbVYbrFH+mBk6RMaIJiphRS6nTtYY8lM1dbR3yQArgfe3D4VvgkAGbqxaHYR2rbXH7C7lk7Han3q7iSXiGKxhAIvnr5j8klpq3iVhRH4wwya1QaPBjXMIK/4NfeouVuG0T6p2mYcnZ3RBoQwxtFXW2Lyi2GeHJRznT9axqQL0eUbSA6YEe6oBO1uhLqt+orFTNkcz4aGqyybEXw9ncV/AZs630Cl/UfHjOuCOmxFx84wqNk8yIbwE4fC6aDJzSMxur70leOHnFnGgjLfnZXZBnc0G4ZD1K6aOVE2nQ+08emcuiN+Cblt98edEuiUVobTIZ/TC7iO+w=="
+      instructor_public_key = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABgQCma37NKtcgEidIzoCbNI7L/zg556SnwEFyi1fbdbr1G5KUTBh9PvI5hRvdKdMv/t18p90YJnFclNfQR6/2wT63vVRgVO876TAcNJIbNPegO2firTjCwdAcHvpdCo891DcsEs3GaaXuvhwapuYrLgsOmXkOIrupeotyuZIsdcXYtzN3oKEz5WB9GpAuvzLNNTh0ZWJyFmz+Q/2RmtzScBd3ACVxGg/M48TSnGObnUlC3Z4Xm+uSFCzDgEfpCh/ElJVRxjj6u+7tq+MEvKox3BroPCF/DYEtsGJ6zX2rwy5xXJ5IO9tyIsZFCJXRg6UjHUgmXxiMFUFTI4qXKPHtbfQ3ctmurrs/5+yBwJhnkwsLNiP47oSSQ+CDjd8PpfTSIpI4VO8ZFR9mOkLmN2DnBiFYBHSmOEWK2OzC6aUaCGmgVdrZVStIWp9Elju6WoZlBkSGL2ulKRMEsV8KoxL18C2fSZceRTuhh/kutbcBZu9TkTI/XCL9NtqcZQsiDImp1n8= ted.logan@Ted-Logans-Macbook-Air.local"
       learner_count         = 1
       single-vm-lab         = false
       cheeper-api           = false
