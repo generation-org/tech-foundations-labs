@@ -1,0 +1,25 @@
+---
+- name: Prep learner machines
+  hosts: all
+  remote_user: centos
+  become: true
+  tasks:
+  - name: Disable SELinux
+    selinux:
+      state: disabled
+  - name: Enable password-based authentication
+    lineinfile:
+      path: /etc/ssh/sshd_config
+      regexp: '^PasswordAuthentication.*no'
+      line: PasswordAuthentication=yes
+  - name: Restart sshd
+    service:
+      name: sshd
+      state: restarted
+  - name: Set centos user password
+    user:
+      name: centos
+      password: "{{ newpassword|password_hash('sha512') }}"
+  - name: Wait for server to restart
+    reboot:
+      reboot_timeout: 3600
