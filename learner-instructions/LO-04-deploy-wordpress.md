@@ -33,3 +33,23 @@ $ systemctl status mysqld
 ```
 
 **Note:** if you break the mysqld service then you will have made your Lab infinitely harder! It should be sufficient to leave it alone and enter the username/password/db name when prompted.
+
+## Need a hint?
+
+<details>
+<summary>Small Hint</summary>
+<br>
+You want to install WordPress on CentOS 8. WordPress wants a LAMP stack. CentOS 8 Linux is already installed, and a MySQL server is already running. What else do you need to have a full LAMP stack installed and running?
+</details>
+
+<details>
+<summary>Medium Hint</summary>
+<br>
+After you've installed a full LAMP stack, you need to get the four components to be able to talk to each other. Apache httpd needs to be able to access PHP, and PHP needs to be able to interact with MySQL.
+</details>
+
+<details>
+<summary>Large Hint</summary>
+<br>
+If you try to serve WordPress using Apache httpd without the correct PHP modules installed, you will see a critical error message in your web browser window. You may be able to find a list of packages that install these missing PHP modules that applies to CentOS 8.
+</details>
