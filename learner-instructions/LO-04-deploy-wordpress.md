@@ -37,7 +37,7 @@ $ systemctl status mysqld
 ## Need a hint?
 
 <details>
-<summary>Small Hint (Free!)</summary>
+<summary>Small Hint</summary>
 <br>
 You want to install WordPress on CentOS 8. WordPress wants a LAMP stack. CentOS 8 Linux is already installed, and a MySQL server is already running. What else do you need to have a full LAMP stack installed and running?
 </details>
@@ -51,5 +51,5 @@ After you've installed a full LAMP stack, you need to get the four components to
 <details>
 <summary>Large Hint</summary>
 <br>
-If you try to serve WordPress using Apache httpd without the correct PHP modules installed, you will see a critical error message in your web browser window. You may be able to find a list of these that applies to CentOS 8, as well as instructions on how to install them. Ensure that the solution you find applies to CentOS 8 and the version of WordPress you downloaded.
+If you try to serve WordPress using Apache httpd without the correct PHP modules installed, you will see a critical error message in your web browser window. You may be able to find a list of packages that install these missing PHP modules that applies to CentOS 8.
 </details>
