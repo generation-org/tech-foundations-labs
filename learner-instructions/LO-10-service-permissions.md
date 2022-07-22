@@ -1,19 +1,27 @@
 # Service Permissions
 
-Thus far, when you have installed WordPress, you have been running it from a default Apache directory owned by the root user and root group. This is not ideal, as WordPress cannot update automatically this way.
+So far, when you have deployed WordPress, you have been running it from Apache httpd's default directory with default permissions. This is not ideal, as it means two things:
 
-You also need sudo access just to be able to modify WordPress files.
+ - WordPress cannot modify its own files or create new ones.
+ - Server admins need root access to modify WordPress files.
 
-Today, you will fix both of these issues.
+Today, your task has three parts.
 
-You will need to create a new directory called ```wordpress``` within ```/var/www/html```, configure httpd to be able to serve and modify documents from it, and then set up a new user with the correct permissions to manage the files within it.
+1. Host WordPress from the ```/var/www/html/wordpress``` directory so that WordPress has the correct permissions to access its own files.
+2. Harden WordPress by securing the `wp-config.php` file from being read by any other users.
+3. Create a new server admin user `admin` that will share read and write permissions for most of WordPress's files... but *not* `wp-config.php`!
 
 Happy coding!
 
 ## Notes
 
+### User
+You do not need to configure your new `admin` user for anything other than the task at hand. All you need to do is ensure the user exists, and can read and write WordPress files.
+
 ### Wordpress
-Wordpress must be deployed to your machine and accessible in a web browser.
+Wordpress must be *safely* deployed to your machine and accessible in a web browser.
+
+**Note:** it is *not* safe for WordPress files to be world-writable. 
 
 ### SELinux
 
@@ -41,22 +49,26 @@ $ systemctl status mysqld
 
 **Note:** if you break the mysqld service then you will have made your Lab infinitely harder! It should be sufficient to leave it alone and enter the username/password/db name when prompted.
 
+### Apache httpd
+
+Your only task here is to modify which directory httpd serves by default. You will not need to configure anything else in the httpd.conf file.
+
 ## Need a hint?
 
 <details>
 <summary>Small Hint</summary>
 <br>
-You need to configure Apache httpd to serve documents from a different directory to the default. Where do you think Apache stores this configuration?
+You need to configure Apache httpd to serve documents from a different directory from the default. Where do you think Apache stores this configuration?
 </details>
 
 <details>
 <summary>Medium Hint</summary>
 <br>
-Apache stores more than just the document root in its configuration file, but also its default user and group. How can this information help you?
+After you've deployed WordPress, you need to modify WordPress file permissions in three ways, to achieve three things. You can do this with three commands.
 </details>
 
 <details>
 <summary>Large Hint</summary>
 <br>
-You need to set up a new user, and ensure they are in the same group as your directory. You also need this group to have the correct permissions in this directory.
+
 </details>
