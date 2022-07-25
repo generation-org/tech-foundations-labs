@@ -25,7 +25,7 @@ resource "aws_key_pair" "Instructor" {
 resource "aws_instance" "InstructorVM" {
   for_each                    = aws_key_pair.Instructor
   ami                         = data.aws_ami.centos.id
-  instance_type               = "t3a.micro"
+  instance_type               = "t3.small"
   subnet_id                   = aws_subnet.global.id
   vpc_security_group_ids      = [aws_security_group.allow_all.id]
   associate_public_ip_address = true

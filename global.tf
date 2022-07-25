@@ -9,9 +9,9 @@ terraform {
     bucket         = "tech-foundations-labs-tfstate"
     key            = "state"
     dynamodb_table = "tech-foundations-labs-tfstate"
-    region = "us-east-1"
+    region         = "us-east-1"
     encrypt        = true
-    profile = "Generation"
+    profile        = "Generation"
   }
 }
 
