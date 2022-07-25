@@ -7,7 +7,7 @@ So far, when you have deployed WordPress, you have been running it from Apache h
 
 Today, your task has three parts.
 
-1. Host WordPress from the ```/var/www/html/wordpress``` directory so that WordPress has the correct permissions to access its own files.
+1. Host WordPress from the ```/var/www/html/wordpress``` directory so that the WordPress process has permission to access its own files.
 2. Harden WordPress by securing the `wp-config.php` file from being read by any other users.
 3. Create a new server admin user `admin` that will share read and write permissions for most of WordPress's files... but *not* `wp-config.php`!
 
