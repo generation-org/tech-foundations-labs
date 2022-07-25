@@ -4,6 +4,11 @@ def test_wp_login_is_file(host):
     wp_login = host.file("/var/www/html/wordpress/wp-login.php")
     assert wp_login.is_file
 
+# tests for whether DocumentRoot is set to /var/www/html/wordpress
+def test_httpd_conf_directory(host):
+    content = File("/etc/httpd/conf/httpd.conf").content
+    assert b'DocumentRoot "/var/www/html/wordpress' in content
+
 # tests for whether wordpress owns its own files and directories
 ## are files user-owned by apache ?
 def test_files_owned_by_apache(host):
