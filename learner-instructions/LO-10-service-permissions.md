@@ -70,5 +70,5 @@ After you've deployed WordPress, you need to modify WordPress file permissions i
 <details>
 <summary>Large Hint</summary>
 <br>
-
+To harden WordPress, you need to secure wp-config.php from being able to be read by any user other than that which runs the WordPress code.
 </details>
