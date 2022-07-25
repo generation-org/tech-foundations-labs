@@ -64,7 +64,7 @@ You need to configure Apache httpd to serve documents from a different directory
 <details>
 <summary>Medium Hint</summary>
 <br>
-After you've deployed WordPress, you need to modify WordPress file permissions in three ways, to achieve three things. You can do this with three commands.
+After you've deployed WordPress, you need to modify WordPress file permissions so that the admin user also has access to WordPress files. This will deviate from Hardening WordPress guidelines.
 </details>
 
 <details>

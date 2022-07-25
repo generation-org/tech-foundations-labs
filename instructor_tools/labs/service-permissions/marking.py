@@ -5,9 +5,13 @@ def test_wp_login_is_file(host):
     assert wp_login.is_file
 
 # tests for whether DocumentRoot is set to /var/www/html/wordpress
-def test_httpd_conf_directory(host):
-    content = File("/etc/httpd/conf/httpd.conf").content
-    assert b'DocumentRoot "/var/www/html/wordpress' in content
+#def test_httpd_conf_directory(host):
+#    content = File("/etc/httpd/conf/httpd.conf").content_string
+#    assert 'DocumentRoot "/var/www/html/wordpress' in content
+
+# test for whether apache is actually serving wordpress
+def test_httpd_serving_wordpress(host):
+    assert host.run('curl -f http://localhost/login').rc == 0
 
 # tests for whether wordpress owns its own files and directories
 ## are files user-owned by apache ?
@@ -54,15 +58,10 @@ def test_file_permissions(host):
 
     for each_file in host.file(wordpress_dir).listdir():
         current_location = wordpress_dir + each_file
-        if current_location == "wp_config.php":
-            continue
-
-        if host.file(current_location).is_file == True:
-            if host.file(current_location).mode == 0o664:
-                continue
-            else:
-                if host.file(current_location)
-                wp_file_permissions_flag = False
+        if each_file != "wp-config.php":
+            if host.file(current_location).is_file == True:
+                if host.file(current_location).mode != 0o664:
+                    wp_file_permissions_flag = False
     
     assert wp_file_permissions_flag
 ## are directory permissions set to 775 ?
