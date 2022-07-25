@@ -77,7 +77,7 @@ def test_directory_permissions(host):
             if host.file(current_location).mode == 0o775:
                 continue
             else:
-                assert wp_directory_permissions_flag == True
+                wp_directory_permissions_flag = False
     
     assert wp_directory_permissions_flag
 
