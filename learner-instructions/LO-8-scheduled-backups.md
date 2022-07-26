@@ -7,7 +7,7 @@ An unfortunate accident has led to your WordPress deployment to be completely de
 You have been provided with the command that will be used for restoring from a backup.
 
 ```
-sudo tar xf /backups/wordpress.tar.* /var/www/html/
+cd /var/www/html; sudo tar xpf /backups/wordpress.tar.*
 ```
 
 Your three tasks today are as follows:
