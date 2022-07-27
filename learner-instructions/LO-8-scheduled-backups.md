@@ -10,10 +10,12 @@ You have been provided with the command that will be used for restoring from a b
 cd /var/www/html; sudo tar xpf /backups/wordpress.tar.*
 ```
 
-Your three tasks today are as follows:
+Your tasks today are as follows:
  - Create a solution that works with these instructions.
  - Automate the process to create a backup every Friday at 23:59.
- - Synchronise a local copy of the `/var/www/html/wordpress` directory, and automate this process to occur every Monday at 03:00 in the morning. **This process should only sync files that have been altered.**
+ - Synchronise a local copy of the `wordpress/` directory inside `/backups/`.
+     - **Note: This process should only sync files that have been altered.**
+ - Automate this process to occur every Monday at 03:00 in the morning.
 
 Happy coding!
 
@@ -64,11 +66,11 @@ You need to archive and compress WordPress data in an expected location. This di
 <details>
 <summary>Medium Hint</summary>
 <br>
-You can instruct Linux to execute commands on a schedule in several ways.
+Linux commands will do different things depending on the directory you run them from. This is called the command's working directory.
 </details>
 
 <details>
 <summary>Large Hint</summary>
 <br>
-There are two ways of archiving a directory in Linux. You are being asked to do both here.
+You are being asked to create a compressed archive for the wordpress/ directory, and you are separately being asked to synchronise that directory to another directory.
 </details>
